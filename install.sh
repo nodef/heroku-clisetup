@@ -5,14 +5,14 @@ id="${PWD##*/}"
 if [ ! -e ~/.heroku ]; then
   mkdir ~/heroku-tmp
   mv heroku.tar.gz ~/heroku-tmp/
-  pushd ~/heroku-tmp
+  pushd ~/heroku-tmp >/dev/null
   echo "${id}: extracting heroku.tar.gz ..."
   tar -xvzf heroku.tar.gz >/dev/null
   mv $(ls|head -n 1) ~/.heroku
   rm heroku.tar.gz
   cd ..
   rmdir heroku-tmp
-  popd
+  popd >/dev/null
 fi
 
 # login
