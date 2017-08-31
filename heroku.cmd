@@ -1,0 +1,1 @@
+@bash ~/.heroku/bin/heroku %*

@@ -1,0 +1,24 @@
+{
+  "name": "heroku-clisetup",
+  "version": "0.0.0",
+  "description": "Setup Heroku CLI without requiring Sudo.",
+  "main": "install.js",
+  "scripts": {
+    "test": "exit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wolfram77/cmd-herokuclisetup.git"
+  },
+  "keywords": [
+    "heroku",
+    "cli",
+    "setup"
+  ],
+  "author": "wolfram77@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wolfram77/cmd-herokuclisetup/issues"
+  },
+  "homepage": "https://github.com/wolfram77/cmd-herokuclisetup#readme"
+}
