@@ -9,11 +9,6 @@ if(!url) url = (
   `${os.arch()}.tar.gz`
 );
 fs.writeFileSync('url.txt', url);
-try {
-  console.log(cp.execSync(`heroku --version`).toString());
-  fs.writeFileSync('index.txt', '1');
-}
-catch(e) { console.log(e); }
 if(os.EOL==='\n') {
   fs.unlinkSync('index.cmd');
   cp.execSync(`tr -d '\r' <install.sh >install.cmd`);

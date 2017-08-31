@@ -1,14 +1,11 @@
 #!/bin/bash
-url=$(cat url.txt)
-if [ -e ~/.netrc ]; then done="1"; fi
-if [ -e ~/_netrc ]; then done="1"; fi
 
 # download
-if [[ "${done}" != "1" ]]; then
+if [ ! -e ~/.heroku ]; then
   cd ~
   mkdir heroku-tmp
   cd heroku-tmp
-  wget ${url} -O heroku.tar.gz
+  wget $(cat url.txt) -O heroku.tar.gz
   tar -xvzf heroku.tar.gz
   mv $(ls|head -n 1) ~/.heroku
   rm heroku.tar.gz
@@ -17,7 +14,7 @@ if [[ "${done}" != "1" ]]; then
 fi
 
 # login
-if [[ "${done}" != "1" ]]; then
+if [ ! -e ~/.netrc ] && [ ! -e ~/_netrc ]; then
   f=".netrc"
   echo "" >${f}
   echo "machine api.heroku.com" >>${f}
@@ -30,10 +27,6 @@ if [[ "${done}" != "1" ]]; then
 fi
 
 # expose
-if [ -e index.txt ]; then
-  echo '#!/bin/bash' >index.sh
-  echo 'heroku "$@"' >>index.sh
-fi
 if [ ! -e index.cmd ]; then
   tr -d '\r' <index.sh >index.cmd
   rm index.sh
