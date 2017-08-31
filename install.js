@@ -9,13 +9,15 @@ if(!url) url = (
   `${os.arch()}.tar.gz`
 );
 fs.writeFileSync('url.txt', url);
-if(os.EOL==='\n') fs.unlinkSync('heroku.cmd');
 try {
   cs.execSync(`heroku --version`);
   fs.writeFileSync('heroku.txt', '1');
 }
 catch(e) {}
-cp.execSync(`tr -d '\r' <install.sh >install.cmd`);
-cp.execSync(`mv install.cmd install.sh`);
-cp.execSync('chmod +x install.sh');
+if(os.EOL==='\n') {
+  fs.unlinkSync('heroku.cmd');
+  cp.execSync(`tr -d '\r' <install.sh >install.cmd`);
+  cp.execSync(`mv install.cmd install.sh`);
+  cp.execSync('chmod +x install.sh');
+}
 cp.execSync('bash install.sh', {'stdio': [0, 1, 2]});

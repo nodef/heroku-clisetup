@@ -1,1 +1,1 @@
-@bash ~/.heroku/bin/heroku %*
+@bash ~/heroku %*

@@ -31,14 +31,17 @@ fi
 
 # expose
 if [ -e heroku.txt ]; then
-  echo 'heroku "$@"' >heroku.sh
+  echo '#!/bin/bash' >heroku.sh
+  echo 'heroku "$@"' >>heroku.sh
 fi
 if [ ! -e heroku.cmd ]; then
   tr -d '\r' <heroku.sh >heroku.cmd
+  rm heroku.sh
+  mv heroku.cmd heroku.sh
 fi
-chmod +x heroku.cmd
+chmod +x heroku.sh
 if [ ! -e ~/heroku ]; then
-  cp heroku.cmd ~/heroku
+  cp heroku.sh ~/heroku
 fi
 
 # test

@@ -1,2 +1,2 @@
 #!/bin/bash
-bash ~/.heroku/bin/heroku "$@"
+~/.heroku/bin/heroku "$@"
