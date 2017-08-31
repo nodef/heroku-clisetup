@@ -1,5 +1,6 @@
 var cp = require('child_process');
 var os = require('os');
+var path = require('path');
 
 var id = path.basename(__dirname);
 if(os.EOL==='\n') {
