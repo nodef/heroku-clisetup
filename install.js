@@ -11,6 +11,7 @@ if(!url) url = (
 fs.writeFileSync('url.txt', url);
 if(os.EOL==='\n') fs.unlinkSync('heroku.cmd');
 cp.execSync(`tr -d '\r' <install.sh >install.cmd`);
+cp.execSync(`printf "\n" >>install.cmd`);
 cp.execSync(`mv install.cmd install.sh`);
 cp.execSync('chmod +x install.sh');
 cp.execSync('bash install.sh');
