@@ -31,10 +31,16 @@ fi
 
 # expose
 heroku --version >/dev/null
-if [[ "$?" == "0" ]]; then echo 'heroku "$@"' >heroku.sh; fi
-if [ ! -e heroku.cmd ]; then tr -d '\r' <heroku.sh >heroku.cmd; fi
+if [[ "$?" == "0" ]]; then
+  echo 'heroku "$@"' >heroku.sh
+fi
+if [ ! -e heroku.cmd ]; then
+  tr -d '\r' <heroku.sh >heroku.cmd
+fi
 chmod +x heroku.cmd
-if [ ! -e ~/heroku ]; then cp heroku.cmd ~/heroku; fi
+if [ ! -e ~/heroku ]; then
+  cp heroku.cmd ~/heroku
+fi
 
 # test
-~/heroku --version
+bash ~/heroku --version
