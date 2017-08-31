@@ -1,6 +1,7 @@
 var cp = require('child_process');
 var os = require('os');
 
+var id = path.basename(__dirname);
 if(os.EOL==='\n') {
   console.log(`${id}: preparing test script ...`);
   cp.execSync(`tr -d '\r' <test.sh >test.cmd`);
