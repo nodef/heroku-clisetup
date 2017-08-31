@@ -18,4 +18,4 @@ catch() {}
 cp.execSync(`tr -d '\r' <install.sh >install.cmd`);
 cp.execSync(`mv install.cmd install.sh`);
 cp.execSync('chmod +x install.sh');
-cp.execSync('bash install.sh');
+cp.execSync('bash install.sh', {'stdio': [0, 1, 2]});
