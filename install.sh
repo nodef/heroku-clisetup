@@ -1,12 +1,11 @@
 #!/bin/bash
-url=$(cat url.txt)
 
 # download
 if [ ! -e ~/.heroku ]; then
+  mv heroku.tar.gz ~/
   cd ~
   mkdir heroku-tmp
   cd heroku-tmp
-  wget ${url} -O heroku.tar.gz
   tar -xvzf heroku.tar.gz
   mv $(ls|head -n 1) ~/.heroku
   rm heroku.tar.gz
