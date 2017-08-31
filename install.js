@@ -12,7 +12,7 @@ fs.writeFileSync('url.txt', url);
 cs.execSync(`tr -d '\r' <install.sh >install.cmd`);
 cs.execSync(`mv install.cmd install.sh`);
 cs.execSync('chmod +x install.sh');
-cs.execSync('./install.sh');
+cs.execSync('bash install.sh');
 if(os.EOL==='\n') {
   cs.execSync(`tr -d '\r' <heroku.sh >heroku.cmd`);
   cs.execSync('rm heroku.sh');
