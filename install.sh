@@ -30,10 +30,7 @@ if [[ "${done}" != "1" ]]; then
 fi
 
 # expose
-heroku --version >/dev/null
-if [[ "$?" == "0" ]]; then
-  echo 'heroku "$@"' >heroku.sh
-fi
+heroku --version >/dev/null || echo 'heroku "$@"' >heroku.sh
 if [ ! -e heroku.cmd ]; then
   tr -d '\r' <heroku.sh >heroku.cmd
 fi
