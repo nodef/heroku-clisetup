@@ -1,4 +1,4 @@
-var cs = require('child_process');
+var cp = require('child_process');
 var os = require('os');
 var fs = require('fs');
 
@@ -9,15 +9,8 @@ if(!url) url = (
   `${os.arch()}.tar.gz`
 );
 fs.writeFileSync('url.txt', url);
-cs.execSync(`tr -d '\r' <install.sh >install.cmd`);
-cs.execSync(`mv install.cmd install.sh`);
-cs.execSync('chmod +x install.sh');
-cs.execSync('bash install.sh');
-if(os.EOL==='\n') {
-  cs.execSync(`tr -d '\r' <heroku.sh >heroku.cmd`);
-  cs.execSync('rm heroku.sh');
-  cs.execSync('chmod +x heroku.cmd');
-}
-cs.execSync('cp heroku.cmd ~/heroku');
-var ver = cs.execSync('~/heroku --version');
-console.log(ver.toString());
+if(os.EOL==='\n') fs.unlinkSync('heroku.cmd');
+cp.execSync(`tr -d '\r' <install.sh >install.cmd`);
+cp.execSync(`mv install.cmd install.sh`);
+cp.execSync('chmod +x install.sh');
+cp.execSync('bash install.sh');
