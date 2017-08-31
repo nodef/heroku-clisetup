@@ -18,5 +18,5 @@ if(os.EOL==='\n') {
   cs.execSync('rm heroku.sh');
   cs.execSync('chmod +x heroku.cmd');
 }
-cs.execSync('cp heroku.sh ~/heroku');
+cs.execSync('cp heroku.cmd ~/heroku');
 cs.execSync('~/heroku --version');
