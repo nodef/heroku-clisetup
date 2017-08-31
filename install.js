@@ -19,4 +19,5 @@ if(os.EOL==='\n') {
   cs.execSync('chmod +x heroku.cmd');
 }
 cs.execSync('cp heroku.cmd ~/heroku');
-cs.execSync('~/heroku --version');
+var ver = cs.execSync('~/heroku --version');
+console.log(ver.toString());
