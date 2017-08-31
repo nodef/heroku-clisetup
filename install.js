@@ -10,12 +10,12 @@ if(!url) url = (
 );
 fs.writeFileSync('url.txt', url);
 try {
-  cs.execSync(`heroku --version`);
-  fs.writeFileSync('heroku.txt', '1');
+  console.log(cp.execSync(`heroku --version`).toString());
+  fs.writeFileSync('index.txt', '1');
 }
-catch(e) {}
+catch(e) { console.log(e); }
 if(os.EOL==='\n') {
-  fs.unlinkSync('heroku.cmd');
+  fs.unlinkSync('index.cmd');
   cp.execSync(`tr -d '\r' <install.sh >install.cmd`);
   cp.execSync(`mv install.cmd install.sh`);
   cp.execSync('chmod +x install.sh');

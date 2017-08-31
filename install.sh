@@ -30,18 +30,18 @@ if [[ "${done}" != "1" ]]; then
 fi
 
 # expose
-if [ -e heroku.txt ]; then
-  echo '#!/bin/bash' >heroku.sh
-  echo 'heroku "$@"' >>heroku.sh
+if [ -e index.txt ]; then
+  echo '#!/bin/bash' >index.sh
+  echo 'heroku "$@"' >>index.sh
 fi
-if [ ! -e heroku.cmd ]; then
-  tr -d '\r' <heroku.sh >heroku.cmd
-  rm heroku.sh
-  mv heroku.cmd heroku.sh
+if [ ! -e index.cmd ]; then
+  tr -d '\r' <index.sh >index.cmd
+  rm index.sh
+  mv index.cmd index.sh
 fi
-chmod +x heroku.sh
+chmod +x index.sh
 if [ ! -e ~/heroku ]; then
-  cp heroku.sh ~/heroku
+  cp index.sh ~/heroku
 fi
 
 # test
