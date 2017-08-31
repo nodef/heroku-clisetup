@@ -16,9 +16,9 @@ rmdir heroku-tmp
 f=".netrc"
 echo "" > ${f}
 echo "machine api.heroku.com" >> ${f}
-echo "  password ${HEROKU_PASSWORD}" >> ${f}
-echo "  login ${HEROKU_EMAIL}" >> ${f}
+echo "  password ${HEROKU_CLI_PASSWORD}" >> ${f}
+echo "  login ${HEROKU_CLI_LOGIN}" >> ${f}
 echo "machine git.heroku.com" >> ${f}
-echo "  password ${HEROKU_PASSWORD}" >> ${f}
-echo "  login ${HEROKU_EMAIL}" >> ${f}
+echo "  password ${HEROKU_CLI_PASSWORD}" >> ${f}
+echo "  login ${HEROKU_CLI_LOGIN}" >> ${f}
 cp .netrc _netrc
