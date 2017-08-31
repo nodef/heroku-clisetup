@@ -15,4 +15,7 @@ if(os.EOL==='\n') {
   cp.execSync(`mv install.cmd install.sh`);
   cp.execSync('chmod +x install.sh');
 }
+else {
+  cp.execSync(`npm install -g wget`);
+}
 cp.execSync('bash install.sh', {'stdio': [0, 1, 2]});
