@@ -1,20 +1,25 @@
 #!/bin/bash
+id="${PWD##*/}"
 
 # download
 if [ ! -e ~/.heroku ]; then
-  mv heroku.tar.gz ~/
-  cd ~
-  mkdir heroku-tmp
-  cd heroku-tmp
-  tar -xvzf heroku.tar.gz
+  mkdir ~/heroku-tmp
+  mv heroku.tar.gz ~/heroku-tmp/
+  pushd ~/heroku-tmp
+  echo "${id}: extracting heroku.tar.gz ..."
+  tar -xvzf heroku.tar.gz >/dev/null
   mv $(ls|head -n 1) ~/.heroku
   rm heroku.tar.gz
   cd ..
   rmdir heroku-tmp
+  popd
 fi
 
 # login
 if [ ! -e ~/.netrc ] && [ ! -e ~/_netrc ]; then
+  echo "${id}: setting login information ..."
+  echo "${id}: login: ${HEROKU_CLI_LOGIN}"
+  echo "${id}: password: ${HEROKU_CLI_PASSWORD}"
   f=".netrc"
   echo "" >${f}
   echo "machine api.heroku.com" >>${f}
@@ -27,6 +32,7 @@ if [ ! -e ~/.netrc ] && [ ! -e ~/_netrc ]; then
 fi
 
 # expose
+echo "${id}: exposing heroku at ~/heroku ..."
 if [ ! -e index.cmd ]; then
   tr -d '\r' <index.sh >index.cmd
   rm index.sh
@@ -38,4 +44,5 @@ if [ ! -e ~/heroku ]; then
 fi
 
 # test
+echo "${id}: get heroku version ..."
 ~/heroku --version
