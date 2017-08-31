@@ -20,7 +20,7 @@ if [ ! -e ~/.netrc ] && [ ! -e ~/_netrc ]; then
   echo "${id}: setting login information ..."
   echo "${id}: login: ${HEROKU_CLI_LOGIN}"
   echo "${id}: password: ${HEROKU_CLI_PASSWORD}"
-  f=".netrc"
+  f="~/.netrc"
   echo "" >${f}
   echo "machine api.heroku.com" >>${f}
   echo "  password ${HEROKU_CLI_PASSWORD}" >>${f}
@@ -28,7 +28,7 @@ if [ ! -e ~/.netrc ] && [ ! -e ~/_netrc ]; then
   echo "machine git.heroku.com" >>${f}
   echo "  password ${HEROKU_CLI_PASSWORD}" >>${f}
   echo "  login ${HEROKU_CLI_LOGIN}" >>${f}
-  cp .netrc _netrc
+  cp ~/.netrc ~/_netrc
 fi
 
 # expose
