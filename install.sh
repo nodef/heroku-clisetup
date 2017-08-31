@@ -1,7 +1,7 @@
 #!/bin/bash
 url=$(cat url.txt)
-if [ -e ~/.netrc ]; then done=1
-if [ -e ~/_netrc ]; then done=1
+if [ -e ~/.netrc ]; then done="1"; fi
+if [ -e ~/_netrc ]; then done="1"; fi
 
 # download
 if [[ "${done}" != "1" ]]; then
@@ -43,4 +43,4 @@ if [ ! -e ~/heroku ]; then
 fi
 
 # test
-bash ~/heroku --version
+~/heroku --version
