@@ -1,6 +1,7 @@
 # Tests
 /test
 test.js
+test.sh
 
 # Hidden
 .*
