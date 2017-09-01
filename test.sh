@@ -1,5 +1,5 @@
 #!/bin/bash
-id="${PWD##*/}"
+id=${PWD##*/}
 
 echo "${id}: read .netrc / _netrc ..."
 if [ -e ~/.netrc ]; then

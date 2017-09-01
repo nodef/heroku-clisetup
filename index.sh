@@ -1,6 +1,7 @@
 #!/bin/bash
-if [ -e ~/.heroku/bin/heroku ]; then
-  ~/.heroku/bin/heroku "$@"
+bin=$(dirname "$0")/.heroku-cli/bin
+if [ -e $bin/heroku ]; then
+  $bin/heroku "$@"
 else
-  ~/.heroku/bin/heroku.cmd "$@"
+  $bin/heroku.cmd "$@"
 fi
