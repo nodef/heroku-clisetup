@@ -8,6 +8,10 @@ pfm=$(cat platform.txt)
 if [[ $PWD == tmp/* ]]; then r=$PWD; else r=~; fi
 uro="https://cli-assets.heroku.com/heroku-cli/channels/stable/heroku-cli"
 if [[ "$url" == "" ]]; then url="${uro}-${pfm}-${ach}.tar.gz"; fi
+echo "${id}: get working directory ..."
+echo "${PWD}"
+echo "${id}: selecting home directory ..."
+echo "${r}"
 
 # download
 if [ ! -e $r/.heroku-cli ]; then
