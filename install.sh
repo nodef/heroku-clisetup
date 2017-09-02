@@ -5,17 +5,19 @@ logn="$HEROKU_CLI_LOGIN"
 pass="$HEROKU_CLI_PASSWORD"
 arch=$(cat arch.txt)
 ptfm=$(cat platform.txt)
+m=${PWD%%/node_modules*}
+if [[ $m == /tmp* ]]; then h=$m; else h=~; fi
 uro="https://cli-assets.heroku.com/heroku-cli/channels/stable/heroku-cli"
 if [[ "$url" == "" ]]; then url="${uro}-${ptfm}-${arch}.tar.gz"; fi
-while [[ $PWD == *node_modules* ]]; do cd ..; done
 echo "${id}: get working directory ..."
-echo "${PWD}"
-if [[ $PWD == /tmp* ]]; then r=$PWD; else r=~; fi
-echo "${id}: selecting home directory ..."
-echo "${r}"
+echo "$PWD"
+echo "${id}: get main directory ..."
+echo "$m"
+echo "${id}: get home directory ..."
+echo "$h"
 
 # download
-if [ ! -e $r/.heroku-cli ]; then
+if [ ! -e $h/.heroku-cli ]; then
   mkdir tmp-hero && cd tmp-hero
   echo "${id}: downloading heroku cli ..."
   echo "${url}"
@@ -26,13 +28,13 @@ if [ ! -e $r/.heroku-cli ]; then
   fi
   echo "${id}: extracting heroku.tar.gz ..."
   tar -xvzf heroku.tar.gz >/dev/null
-  mv $(ls|head -n 1) $r/.heroku-cli
+  mv $(ls|head -n 1) $h/.heroku-cli
   rm heroku.tar.gz
   cd .. && rmdir tmp-hero
 fi
 
 # login
-if [ ! -e $r/.netrc ] && [ ! -e $r/_netrc ]; then
+if [ ! -e $h/.netrc ] && [ ! -e $h/_netrc ]; then
   echo "${id}: setting login information ..."
   echo "" >netrc
   echo "machine api.heroku.com" >>netrc
@@ -41,17 +43,17 @@ if [ ! -e $r/.netrc ] && [ ! -e $r/_netrc ]; then
   echo "machine git.heroku.com" >>netrc
   echo "  password ${pass}" >>netrc
   echo "  login ${logn}" >>netrc
-  cp netrc $r/.netrc
-  mv netrc $r/_netrc
+  cp netrc $h/.netrc
+  mv netrc $h/_netrc
 fi
 
 # expose
 echo "${id}: exposing heroku at ~/heroku ..."
 chmod +x index.sh
-if [ ! -e $r/heroku ]; then
-  cp index.sh $r/heroku
+if [ ! -e $h/heroku ]; then
+  cp index.sh $h/heroku
 fi
 
 # test
 echo "${id}: get heroku version ..."
-$r/heroku --version
+$h/heroku --version
