@@ -5,14 +5,9 @@ logn="$HEROKU_CLI_LOGIN"
 pass="$HEROKU_CLI_PASSWORD"
 arch=$(cat arch.txt)
 ptfm=$(cat platform.txt)
-m=${PWD%%/node_modules*}
-if [[ $m == /tmp* ]]; then h=$m; else h=~; fi
 uro="https://cli-assets.heroku.com/heroku-cli/channels/stable/heroku-cli"
 if [[ "$url" == "" ]]; then url="${uro}-${ptfm}-${arch}.tar.gz"; fi
-echo "${id}: get working directory ..."
-echo "$PWD"
-echo "${id}: get main directory ..."
-echo "$m"
+if [[ $PWD == /tmp* ]]; then h=${PWD%%/node_modules*}; else h=~; fi
 echo "${id}: get home directory ..."
 echo "$h"
 

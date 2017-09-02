@@ -11,5 +11,5 @@ else
 fi
 echo
 
-echo "${id}: list addons ..."
-~/heroku addons --app heroku-clisetup
+echo "${id}: list apps ..."
+~/heroku apps
