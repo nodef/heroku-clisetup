@@ -1,6 +1,6 @@
 {
   "name": "heroku-clisetup",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Setup Heroku CLI without requiring Sudo.",
   "main": "index.js",
   "scripts": {
