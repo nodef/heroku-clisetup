@@ -1,5 +1,7 @@
 # heroku-clisetup
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/nodef/heroku-clisetup.svg)](https://greenkeeper.io/)
+
 [![NPM](https://nodei.co/npm/heroku-clisetup.png)](https://nodei.co/npm/heroku-clisetup/)
 
 Setup Heroku CLI without requiring Sudo.
