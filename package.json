@@ -1,6 +1,6 @@
 {
   "name": "heroku-clisetup",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "Setup Heroku CLI without requiring Sudo.",
   "main": "index.js",
   "scripts": {
@@ -9,18 +9,20 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/wolfram77/cmd-herokuclisetup.git"
+    "url": "git+https://github.com/nodef/heroku-clisetup.git"
   },
   "keywords": [
     "heroku",
     "cli",
-    "setup"
+    "setup",
+    "without",
+    "sudo"
   ],
   "author": "wolfram77@gmail.com",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/wolfram77/cmd-herokuclisetup/issues"
+    "url": "https://github.com/nodef/heroku-clisetup/issues"
   },
-  "homepage": "https://github.com/wolfram77/cmd-herokuclisetup#readme",
+  "homepage": "https://github.com/nodef/heroku-clisetup#readme",
   "dependencies": {}
 }

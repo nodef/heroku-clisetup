@@ -1,7 +1,3 @@
-# heroku-clisetup
-
-[![NPM](https://nodei.co/npm/heroku-clisetup.png)](https://nodei.co/npm/heroku-clisetup/)
-
 Setup Heroku CLI without requiring Sudo.
 
 ```bash
