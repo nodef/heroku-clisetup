@@ -1,5 +1,7 @@
 Setup Heroku CLI without requiring Sudo.
 
+<br>
+
 ```bash
 # add as a dependency to your app
 npm install --save heroku-clisetup
@@ -11,8 +13,15 @@ HEROKU_CLI_URL=https://cli-assets.heroku.com/heroku-cli/channels/stable/heroku-c
 # this information is stored in your ~/.netrc or ~/_netrc
 HEROKU_CLI_LOGIN=youremail@domain.com
 HEROKU_CLI_PASSWORD=your_password
+```
 
-# use heroku cli from your script
-# or use it from app using child_process
-~/heroku --version
+```javascript
+const cp = require('child_process');
+const herokuCliSetup = require('heroku-clisetup');
+
+// Install Heroku CLI.
+herokuCliSetup();
+
+// Use heroku cli from your script.
+cp.execSync(`~/heroku --version`, {stdio: [0, 1, 2]});
 ```

@@ -30,15 +30,14 @@ function installCli() {
   var phom = os.homedir();
   var pcli = path.join(phom, '.heroku-cli');
   if (fs.existsSync(pcli)) return;
-  var rtmp = path.join(os.homedir(), '.heroku-cli-');  // avoid cross-dev rename!
+  var rtmp = path.join(phom, '.heroku-cli-');  // avoid cross-dev rename!
   var ptmp = fs.mkdtempSync(rtmp);
   var url  = installUrl();
   var fout = 'heroku-cli.tar.gz';
   var pout = path.join(ptmp, fout);
-  process.chdir(ptmp);
-  if (os.platform()!=='win32') cp.execSync(`wget -nv -O ${fout} "${url}"`, {cwd: ptmp, stdio});
-  else cp.execSync(`powershell -command "& { iwr ${url} -OutFile ${fout} }"`, {cwd: ptmp, stdio});
-  cp.execSync(`tar -xzf ${fout}`, {cwd: ptmp, stdio});
+  if (os.platform()!=='win32') cp.execSync(`wget -nv -O ${pout} "${url}"`, {stdio});
+  else cp.execSync(`powershell -command "& { iwr ${url} -OutFile ${pout} }"`, {stdio});
+  cp.execSync(`tar -xzf ${pout} -C ${ptmp}`, {stdio});
   fs.unlinkSync(pout);
   var dpkg = fs.readdirSync(ptmp)[0];
   var ppkg = path.join(ptmp, dpkg);
@@ -63,15 +62,26 @@ function exposeCli() {
   var fshe = pwin? 'heroku.cmd' : 'heroku';
   var pshe = path.join(phom, fshe);
   fs.copyFileSync(psh, pshe);
+  cp.execSync(`chmod +x ${pshe}`);
   cp.execSync(`${pshe} --version`, {stdio});
+}
+
+function existsCli() {
+  var phom = os.homedir();
+  var pwin = os.platform()==='win32';
+  var fshe = pwin? 'heroku.cmd' : 'heroku';
+  var pshe = path.join(phom, fshe);
+  return fs.existsSync(pshe);
 }
 
 
 
 
-function main() {
+function herokuCliSetup() {
+  if (existsCli()) return;
   installCli();
   setupNetrc();
   exposeCli();
 }
-main();
+module.exports = herokuCliSetup;
+if (require.main===module) herokuCliSetup();
