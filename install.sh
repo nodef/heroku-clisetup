@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 id=${PWD##*/}
 url="$HEROKU_CLI_URL"
 logn="$HEROKU_CLI_LOGIN"
