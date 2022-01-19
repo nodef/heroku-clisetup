@@ -1,10 +1,10 @@
 {
   "name": "heroku-clisetup",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "Setup Heroku CLI without requiring Sudo.",
   "main": "index.js",
   "scripts": {
-    "install": "node install && chmod +x install.sh && bash install.sh",
+    "install": "node install.js",
     "test": "chmod +x test.sh && bash test.sh"
   },
   "repository": {

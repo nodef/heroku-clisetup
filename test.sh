@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 id=${PWD##*/}
 
 echo "${id}: read .netrc / _netrc ..."
