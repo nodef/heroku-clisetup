@@ -30,9 +30,8 @@ function installCli() {
   var phom = os.homedir();
   var pcli = path.join(phom, '.heroku-cli');
   if (fs.existsSync(pcli)) return;
-  var dtmp = 'tmp-heroku-cli-setup';
-  var ptmp = path.join(phom, dtmp);
-  fs.mkdirSync(ptmp, {recursive: true});
+  var rtmp = path.join(os.tmpdir(), '.heroku-cli-');
+  var ptmp = fs.mkdtempSync(rtmp);
   var url  = installUrl();
   var fout = 'heroku-cli.tar.gz';
   var pout = path.join(ptmp, fout);
@@ -44,7 +43,7 @@ function installCli() {
   var dpkg = fs.readdirSync(ptmp)[0];
   var ppkg = path.join(ptmp, dpkg);
   fs.renameSync(ppkg, pcli);
-  fs.rmSync(ptmp, {recursive: true});
+  fs.rmSync(ptmp, {recursive: true, maxRetries: 4});
 }
 
 function setupNetrc() {
@@ -58,8 +57,11 @@ function setupNetrc() {
 
 function exposeCli() {
   var phom = os.homedir();
-  var psh  = path.join(__dirname, 'index.sh');
-  var pshe = path.join(phom, 'heroku');
+  var pwin = os.platform()==='win32';
+  var fsh  = pwin? 'index.cmd' : 'index.sh';
+  var psh  = path.join(__dirname, fsh);
+  var fshe = pwin? 'heroku.cmd' : 'heroku';
+  var pshe = path.join(phom, fshe);
   fs.copyFileSync(psh, pshe);
   cp.execSync(`${pshe} --version`, {stdio});
 }
