@@ -30,7 +30,7 @@ function installCli() {
   var phom = os.homedir();
   var pcli = path.join(phom, '.heroku-cli');
   if (fs.existsSync(pcli)) return;
-  var rtmp = path.join(os.tmpdir(), '.heroku-cli-');
+  var rtmp = path.join(os.homedir(), '.heroku-cli-');  // avoid cross-dev rename!
   var ptmp = fs.mkdtempSync(rtmp);
   var url  = installUrl();
   var fout = 'heroku-cli.tar.gz';
