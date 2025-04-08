@@ -25,3 +25,5 @@ herokuCliSetup();
 // Use heroku cli from your script.
 cp.execSync(`~/heroku --version`, {stdio: [0, 1, 2]});
 ```
+
+![](https://ga-beacon.deno.dev/G-RC63DPBH3P:SH3Eq-NoQ9mwgYeHWxu7cw/github.com/nodef/heroku-clisetup)
